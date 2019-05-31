@@ -49,7 +49,7 @@ function getData(input) {
           pokemonImage.attr("src", results[i].images.fixed_height_still.url);
           pokemonImage.attr("data-still", results[i].images.fixed_height_still.url)
           pokemonImage.attr("data-animate", results[i].images.fixed_height.url)
-          //Supposed to change state between still and animated, but it doesn't work yet.
+
           pokemonImage.attr("data-state", "still")
           pokemonImage.on("click", function() {
 
@@ -57,11 +57,9 @@ function getData(input) {
 
             if (state === "still") {
               $(this).attr("src", $(this).attr("data-animate"));
-            //   $(this).attr("src", results[i].images.fixed_height.url)
               $(this).attr("data-state", "animate");
             } else {
               $(this).attr("src", $(this).attr("data-still"));
-            //   $(this).attr("src", results[i].images.fixed_height_still.url)
               $(this).attr("data-state", "still");
             }
           });
