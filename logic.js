@@ -11,7 +11,7 @@ $("#addpokemon").on("click", function(){
     $('.pokebuttons').empty()
     topics.forEach(createHTML)
 })
-
+$(".pokebutton").on("click", function(){getData($(this).attr("id"))});
 
 function createHTML(pokemon) {
     $('.pokebuttons').append("<button class='pokebutton' id = " + pokemon + ">" + pokemon + "</button>");
@@ -53,20 +53,7 @@ function getData(input) {
 
     //     return gifs[1]
 
-        // $(".pokegif").on("click", function() {
 
-        //     var state = $(this).attr("data-state");
-
-        //     if (state === "still") {
-        //     //   $(this).attr("src", $(this).attr("data-animate"));
-        //       $(this).attr("src", '"+gifs[i].images.original.url+"')
-        //       $(this).attr("data-state", "animate");
-        //     } else {
-        //     //   $(this).attr("src", $(this).attr("data-still"));
-        //       $(this).attr("src=", "gifs[i].images.fixed_height_still.url")
-        //       $(this).attr("data-state", "still");
-        //     }
-        //   });
       
 
     // });
@@ -105,6 +92,21 @@ function getData(input) {
           var pokemonImage = $("<img>");
 
           pokemonImage.attr("src", results[i].images.fixed_height_still.url);
+          pokemonImage.attr("data-state", "still")
+          pokemonImage.on("click", function() {
+
+            var state = $(this).attr("data-state");
+
+            if (state === "still") {
+            //   $(this).attr("src", $(this).attr("data-animate"));
+              $(this).attr("src", results[i].images.fixed_height.url)
+              $(this).attr("data-state", "animate");
+            } else {
+            //   $(this).attr("src", $(this).attr("data-still"));
+              $(this).attr("src", results[i].images.fixed_height_still.url)
+              $(this).attr("data-state", "still");
+            }
+          });
 
           pokemonDiv.append(p);
           pokemonDiv.append(pokemonImage);
